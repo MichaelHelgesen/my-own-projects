@@ -1,4 +1,3 @@
-# my-own-projects
-A collection of my own projects.
+# My own projects
 
-Currently they can be found here: https://codepen.io/MichaelHelgesen
+This is a collection of my own projects that I've build, or am currently building, to practice my coding.
