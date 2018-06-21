@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Workout Log - Add Program</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="stylesheet" media="screen" href="/styles/main.css" />
-    <script src="/scripts/main.js"></script>
+    
 </head>
 <body>
     <h1>WORKOUT LOG</h1>
 
-    <input type="text" value="Name">
+    <form id="add-program-form">
 
-    <button>Add Workout</button>
+        <input type="text" placeholder="Name" id="add-program">
+
+        <button id="add-program-button">Add Workout</button>
+
+    </form>
+    
+    <div id="content">
+        
+    </div>
+
+    <script src="/scripts/main.js"></script>
 
 </body>
 </html>
