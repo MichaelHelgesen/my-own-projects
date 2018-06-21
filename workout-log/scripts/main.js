@@ -1,28 +1,59 @@
-const program = function (name) {
-    this.name = name
+const program = function (name, id) {
+    this.name = name,
+    this.id = id
+ /*    this.age = 4,
+    this.sessions = [{
+        name: 'Pull 1',
+        excercises: [{
+            name: 'Ring dip'
+        }, {
+            name: 'Archer Pushup'
+        }]
+    }, {
+        name: 'Push 2'
+    }] */
 }
 
-const newProgram = new program('Body By Rings Phase #1')
+// Create program array from localStorage
+const createPrograms = () => {
+    const programJSON = localStorage.getItem('program')
 
-const newProgram2 = new program('Body By Rings Phase #2')
+    try {
+        return programJSON ? JSON.parse(programJSON) : []
+    } catch (e) {
+        []
+    }
+}
 
-const arrayOfPrograms = []
+// The array to hold the different programs
+let programs = createPrograms()
 
-arrayOfPrograms.push(newProgram)
+// Save programs to local storage
+const saveProgram = (program) => {
+    localStorage.setItem('program', JSON.stringify(program))
+}
 
-arrayOfPrograms.push(newProgram2)
+// Listen for button press.
+document.querySelector('#add-program-button').addEventListener('click', (event) => {
+    
+    event.preventDefault()
 
-console.log(arrayOfPrograms)
+    const input = document.querySelector('#add-program')
+    const inputData = ''
 
-// Array of objects:
+    // Check to see if input has value
+    if (input.value) {
+        programs.push(new program(input.value))
+        input.value = ''
+        saveProgram(programs)
+    } else {
+        alert('You need to enter a workout name')
+    } 
+    
+})  
 
-/* const people = [{
-    name: 'Mikke',
-    age: 38
-}, {
-    name: 'Per',
-    age: 34
-}, {
-    name: 'Ane',
-    age: 23
-}] */
+// DOM elements for each individual program
+
+// Render the program
+
+// Save todos to localStorage
