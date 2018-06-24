@@ -1,17 +1,17 @@
 const program = function (name, id = 0) {
     this.name = name,
-    this.id = uuidv4()
- /*    this.age = 4,
+    this.id = uuidv4(),
+
     this.sessions = [{
         name: 'Pull 1',
         excercises: [{
             name: 'Ring dip'
         }, {
-            name: 'Archer Pushup'
+            name: 'Archer Pushup' 
         }]
     }, {
-        name: 'Push 2'
-    }] */
+        name: 'Push 1'
+    }] 
 }
 
 // Create program array from localStorage
