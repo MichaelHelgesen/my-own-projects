@@ -1,17 +1,8 @@
-const program = function (name, id = 0) {
-    this.name = name,
-    this.id = uuidv4(),
-
-    this.sessions = [{
-        name: 'Pull 1',
-        excercises: [{
-            name: 'Ring dip'
-        }, {
-            name: 'Archer Pushup' 
-        }]
-    }, {
-        name: 'Push 1'
-    }] 
+function Program(name, id = 0) {
+    this.name = name.trim(),
+    //this.id = uuidv4(),
+    //this.id = name.toLowerCase().trim().replace(/\s+/g, '')
+    this.sessions = [] 
 }
 
 // Create program array from localStorage
@@ -58,7 +49,7 @@ const generateToDOM = (program) => {
     editButton.textContent = 'Edit'
     editButton.classList.add('button', 'button--text')
     editButton.addEventListener('click', () => {
-        location.assign(`/add_session.html#${program.name}`)
+        location.assign(`/add_session.html#${program.name.toLowerCase().trim().replace(/\s+/g, '')}`)
     })
 
     // Setup name

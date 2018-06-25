@@ -10,7 +10,7 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
 
     // Check to see if input has value
     if (input.value) {
-        programs.push(new program(input.value))
+        programs.push(new Program(input.value))
         input.value = ''
         saveProgram(programs)
         renderPrograms()
