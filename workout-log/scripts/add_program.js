@@ -13,11 +13,11 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
         programs.push(new Program(input.value))
         input.value = ''
         saveProgram(programs)
-        renderPrograms()
+        renderPrograms(programs)
     } else {
         alert('You need to enter a workout name')
     } 
     
 })  
 
-renderPrograms()
+renderPrograms(programs)

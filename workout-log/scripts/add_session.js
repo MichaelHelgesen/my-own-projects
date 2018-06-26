@@ -3,8 +3,6 @@ let programs = createPrograms()
 
 renderPrograms()
 
-
-
  const addSessions = () => {
     programs.forEach((item, index) => {
         item.sessions.push(
@@ -17,7 +15,6 @@ renderPrograms()
         )
     })
 }
-
 
 // addSessions()
 

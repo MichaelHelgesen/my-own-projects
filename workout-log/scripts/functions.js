@@ -42,7 +42,7 @@ const generateToDOM = (program) => {
     deleteButton.addEventListener('click', () => {
         deleteProgram(program.id)
         saveProgram(programs)
-        renderPrograms()
+        renderPrograms(programs)
     })
 
     // Setup the edit button
@@ -68,13 +68,13 @@ const generateToDOM = (program) => {
 }
 
 // Render the programs
-const renderPrograms = () => {
+const renderPrograms = (test) => {
     
     const contentDIV = document.querySelector('#content')
     contentDIV.innerHTML = ''
     
-    if (programs.length > 0) {
-        programs.forEach((program) => {
+    if (test.length > 0) {
+        test.forEach((program) => {
             contentDIV.appendChild(generateToDOM(program))
         })
     } else {
