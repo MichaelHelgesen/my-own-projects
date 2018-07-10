@@ -5,6 +5,10 @@ function Program(name, id = 0) {
     this.sessions = [] 
 }
 
+// The array from the different subpages set in renderPrograms.
+// Created to easier reuse code. 
+let currentArray = []
+
 // Create program array from localStorage
 const createPrograms = () => {
     const programJSON = localStorage.getItem('program')
@@ -40,16 +44,20 @@ const generateToDOM = (program) => {
     deleteButton.textContent = 'x'
     deleteButton.classList.add('button', 'button--text')
     deleteButton.addEventListener('click', () => {
-        deleteProgram(program.id)
+        deleteProgram(program.name)
         saveProgram(programs)
-        renderPrograms(programs)
+        renderPrograms(currentArray)
     })
 
     // Setup the edit button
     editButton.textContent = 'Edit'
     editButton.classList.add('button', 'button--text')
     editButton.addEventListener('click', () => {
-        location.assign(`/add_session.html#${program.name.toLowerCase().trim().replace(/\s+/g, '')}`)
+        if (!document.location.hash) {
+            location.assign(`/add_session.html#${program.name.toLowerCase().trim().replace(/\s+/g, '')}`)
+        } else if (document.location.pathname === '/add_session.html') {
+            location.assign(`/add_exercises.html#${program.name.toLowerCase().trim().replace(/\s+/g, '')}`)
+        } 
     })
 
     // Setup name
@@ -68,13 +76,13 @@ const generateToDOM = (program) => {
 }
 
 // Render the programs
-const renderPrograms = (test) => {
-    
+const renderPrograms = (array) => {
+    currentArray = array
     const contentDIV = document.querySelector('#content')
     contentDIV.innerHTML = ''
     
-    if (test.length > 0) {
-        test.forEach((program) => {
+    if (array.length > 0) {
+        array.forEach((program) => {
             contentDIV.appendChild(generateToDOM(program))
         })
     } else {
@@ -84,8 +92,9 @@ const renderPrograms = (test) => {
 
 // Delete a program
 const deleteProgram = ((programID) => {
-    const index = programs.findIndex((item) => item.id === programID)
+    const index = currentArray.findIndex((item) => item.name === programID)
     if (index > -1) {
-        programs.splice(index, 1)
+        currentArray.splice(index, 1)
     }
 })
+

@@ -21,3 +21,7 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
 })  
 
 renderPrograms(programs)
+
+//testing(programs)
+
+console.log(currentArray)

@@ -5,10 +5,12 @@ let findProgram = programs.findIndex(findSession)
 
 let currentProgram = programs[findProgram]
 
+
 function findSession(element) {
     return element.name.toLowerCase().trim().replace(/\s+/g, '') === locationID;
   }
 
+  console.log(locationID)
 
 // Listen for button press to add program.
 document.querySelector('#add-program-button').addEventListener('click', (event) => {
@@ -21,8 +23,7 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
     if (input.value) {
         currentProgram.sessions.push(
             {
-                name: input.value,
-                exercises: []
+                name: input.value
             }
         )
         input.value = ''
@@ -34,8 +35,11 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
     
 })  
 
-renderPrograms(currentProgram.sessions)
+//renderPrograms(currentProgram.sessions)
 
 //console.log(testing(currentProgram.sessions))
 
-console.log(currentArray)
+console.log(findProgram)
+console.log(currentProgram)
+console.log(programs)
+console.log(locationID)
