@@ -9,6 +9,9 @@ function Program(name, id = 0) {
 // Created to easier reuse code. 
 let currentArray = []
 
+
+let testing = ''
+
 // Create program array from localStorage
 const createPrograms = () => {
     const programJSON = localStorage.getItem('program')
@@ -56,7 +59,7 @@ const generateToDOM = (program) => {
         if (!document.location.hash) {
             location.assign(`/add_session.html#${program.name.toLowerCase().trim().replace(/\s+/g, '')}`)
         } else if (document.location.pathname === '/add_session.html') {
-            location.assign(`/add_exercises.html#${program.name.toLowerCase().trim().replace(/\s+/g, '')}`)
+            location.assign(`/add_exercises.html#${sjekk}_${program.name.toLowerCase().trim().replace(/\s+/g, '')}`)
         } 
     })
 
@@ -98,3 +101,4 @@ const deleteProgram = ((programID) => {
     }
 })
 
+let sjekk

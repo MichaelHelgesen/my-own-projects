@@ -9,7 +9,6 @@ function findSession(element) {
     return element.name.toLowerCase().trim().replace(/\s+/g, '') === locationID;
   }
 
-
 // Listen for button press to add program.
 document.querySelector('#add-program-button').addEventListener('click', (event) => {
     
@@ -39,3 +38,6 @@ renderPrograms(currentProgram.sessions)
 //console.log(testing(currentProgram.sessions))
 
 console.log(currentArray)
+
+sjekk = locationID
+console.log(sjekk)

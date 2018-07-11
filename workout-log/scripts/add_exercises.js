@@ -1,16 +1,28 @@
-const locationID = location.hash.substring(1)
+const locationID = location.hash.substring(1).split('_')
 let programs = createPrograms()
 
-let findProgram = programs.findIndex(findSession) 
 
-let currentProgram = programs[findProgram]
+// Need to figure out this!
+let findProgram1 = programs.findIndex(findSession1)
 
+let currentProgram1 = programs[findProgram1]
 
-function findSession(element) {
-    return element.name.toLowerCase().trim().replace(/\s+/g, '') === locationID;
+function findSession1(element) {
+    return element.name.toLowerCase().trim().replace(/\s+/g, '') === locationID[0];
   }
 
-  console.log(locationID)
+let findProgram2 = currentProgram1.sessions.findIndex(findSession2)
+
+let currentProgram = currentProgram1.sessions[findProgram2]
+
+function findSession2(element) {
+    return element.name.toLowerCase().trim().replace(/\s+/g, '') === locationID[1];
+  }
+
+console.log(currentProgram1)
+console.log(currentProgram)
+
+
 
 // Listen for button press to add program.
 document.querySelector('#add-program-button').addEventListener('click', (event) => {
@@ -21,25 +33,18 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
 
     // Check to see if input has value
     if (input.value) {
-        currentProgram.sessions.push(
+        currentProgram.exercises.push(
             {
                 name: input.value
             }
         )
         input.value = ''
         saveProgram(programs)
-        renderPrograms(currentProgram.sessions)
+        renderPrograms(currentProgram.exercises)
     } else {
         alert('You need to enter a workout name')
     } 
     
 })  
 
-//renderPrograms(currentProgram.sessions)
-
-//console.log(testing(currentProgram.sessions))
-
-console.log(findProgram)
-console.log(currentProgram)
-console.log(programs)
 console.log(locationID)
