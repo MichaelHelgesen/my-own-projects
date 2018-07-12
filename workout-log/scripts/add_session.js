@@ -35,9 +35,6 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
 
 renderPrograms(currentProgram.sessions)
 
-//console.log(testing(currentProgram.sessions))
-
 console.log(currentArray)
 
 sjekk = locationID
-console.log(sjekk)

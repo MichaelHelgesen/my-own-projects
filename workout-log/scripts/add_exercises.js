@@ -1,30 +1,20 @@
+// Get the identifiers from URL
 const locationID = location.hash.substring(1).split('_')
+
+// Get programs from local storage.
 let programs = createPrograms()
 
+// Find the first and second array in which current session lives.
+const firstArray = findArray(programs, locationID[0])
+const secondArray = findArray(programs[firstArray].sessions, locationID[1])
 
-// Need to figure out this!
-let findProgram1 = programs.findIndex(findSession1)
+function findArray(array, locationID) {
+    return array.findIndex(element => element.name.toLowerCase().trim().replace(/\s+/g, '') === locationID) 
+}
 
-let currentProgram1 = programs[findProgram1]
+const currentProgram = programs[firstArray].sessions[secondArray]
 
-function findSession1(element) {
-    return element.name.toLowerCase().trim().replace(/\s+/g, '') === locationID[0];
-  }
-
-let findProgram2 = currentProgram1.sessions.findIndex(findSession2)
-
-let currentProgram = currentProgram1.sessions[findProgram2]
-
-function findSession2(element) {
-    return element.name.toLowerCase().trim().replace(/\s+/g, '') === locationID[1];
-  }
-
-console.log(currentProgram1)
-console.log(currentProgram)
-
-
-
-// Listen for button press to add program.
+// Listen for button press to add exercises.
 document.querySelector('#add-program-button').addEventListener('click', (event) => {
     
     event.preventDefault()
@@ -42,9 +32,10 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
         saveProgram(programs)
         renderPrograms(currentProgram.exercises)
     } else {
-        alert('You need to enter a workout name')
+        alert('You need to enter an exercise name')
     } 
     
 })  
 
-console.log(locationID)
+// Render the exercises to DOM
+renderPrograms(currentProgram.exercises)
