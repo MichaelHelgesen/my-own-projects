@@ -1,6 +1,6 @@
 // Get the identifiers from URL
 const locationID = location.hash.substring(1).split('_')
-
+arrayID = locationID[0] + ' - ' + locationID[1]
 // Get programs from local storage.
 let programs = createPrograms()
 
@@ -39,3 +39,6 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
 
 // Render the exercises to DOM
 renderPrograms(currentProgram.exercises)
+
+
+console.log(arrayID)

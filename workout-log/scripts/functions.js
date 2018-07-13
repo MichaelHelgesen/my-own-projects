@@ -9,8 +9,7 @@ function Program(name, id = 0) {
 // Created to easier reuse code. 
 let currentArray = []
 
-
-let testing = ''
+let arrayID
 
 // Create program array from localStorage
 const createPrograms = () => {
@@ -59,7 +58,7 @@ const generateToDOM = (program) => {
         if (!document.location.hash) {
             location.assign(`/add_session.html#${program.name.toLowerCase().trim().replace(/\s+/g, '')}`)
         } else if (document.location.pathname === '/add_session.html') {
-            location.assign(`/add_exercises.html#${sjekk}_${program.name.toLowerCase().trim().replace(/\s+/g, '')}`)
+            location.assign(`/add_exercises.html#${arrayID}_${program.name.toLowerCase().trim().replace(/\s+/g, '')}`)
         } 
     })
 
@@ -70,7 +69,9 @@ const generateToDOM = (program) => {
     containerEl.appendChild(programName)
 
     // Add edit button to container
-    containerEl.appendChild(editButton)
+    if (document.location.pathname != '/add_exercises.html') {
+        containerEl.appendChild(editButton)
+    }
 
     // Add delete button to container
     containerEl.appendChild(deleteButton)
@@ -83,13 +84,19 @@ const renderPrograms = (array) => {
     currentArray = array
     const contentDIV = document.querySelector('#content')
     contentDIV.innerHTML = ''
+
     
+
     if (array.length > 0) {
+        if (document.location.hash) {
+            contentDIV.innerHTML = arrayID
+        }
+        
         array.forEach((program) => {
             contentDIV.appendChild(generateToDOM(program))
         })
     } else {
-        contentDIV.innerHTML ='<span>No programs made</span>'
+        contentDIV.innerHTML = arrayID + '<p>No entries yet.</p>'
     }
 } 
 
@@ -100,5 +107,3 @@ const deleteProgram = ((programID) => {
         currentArray.splice(index, 1)
     }
 })
-
-let sjekk
