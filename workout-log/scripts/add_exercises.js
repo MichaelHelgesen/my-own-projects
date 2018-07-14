@@ -1,8 +1,9 @@
 // Get the identifiers from URL
 const locationID = location.hash.substring(1).split('_')
 arrayID = locationID[0] + ' - ' + locationID[1]
+
 // Get programs from local storage.
-let programs = createPrograms()
+let programs = createPrograms('program')
 
 // Find the first and second array in which current session lives.
 const firstArray = findArray(programs, locationID[0])
@@ -29,7 +30,7 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
             }
         )
         input.value = ''
-        saveProgram(programs)
+        saveProgram('program', programs)
         renderPrograms(currentProgram.exercises)
     } else {
         alert('You need to enter an exercise name')
@@ -39,6 +40,3 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
 
 // Render the exercises to DOM
 renderPrograms(currentProgram.exercises)
-
-
-console.log(arrayID)

@@ -2,7 +2,7 @@ const locationID = location.hash.substring(1)
 
 arrayID = locationID
 
-let programs = createPrograms()
+let programs = createPrograms('program')
 
 let findProgram = programs.findIndex(findSession) 
 
@@ -28,7 +28,7 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
             }
         )
         input.value = ''
-        saveProgram(programs)
+        saveProgram('program', programs)
         renderPrograms(currentProgram.sessions)
     } else {
         alert('You need to enter a workout name')
@@ -37,5 +37,3 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
 })  
 
 renderPrograms(currentProgram.sessions)
-
-console.log(currentArray)

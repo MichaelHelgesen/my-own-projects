@@ -9,11 +9,13 @@ function Program(name, id = 0) {
 // Created to easier reuse code. 
 let currentArray = []
 
+// The array ID from the different items on the subpages. Used to display names of program and
+// sessions and to know where the different items belong in the main object.
 let arrayID
 
 // Create program array from localStorage
-const createPrograms = () => {
-    const programJSON = localStorage.getItem('program')
+const createPrograms = (key) => {
+    const programJSON = localStorage.getItem(key)
 
     try {
         return programJSON ? JSON.parse(programJSON) : []
@@ -23,8 +25,8 @@ const createPrograms = () => {
 }
 
 // Save programs to local storage
-const saveProgram = (program) => {
-    localStorage.setItem('program', JSON.stringify(program))
+const saveProgram = (key, program) => {
+    localStorage.setItem(key, JSON.stringify(program))
 }
 
 // DOM elements for each individual program
@@ -47,7 +49,7 @@ const generateToDOM = (program) => {
     deleteButton.classList.add('button', 'button--text')
     deleteButton.addEventListener('click', () => {
         deleteProgram(program.name)
-        saveProgram(programs)
+        saveProgram('program', programs)
         renderPrograms(currentArray)
     })
 
@@ -85,13 +87,11 @@ const renderPrograms = (array) => {
     const contentDIV = document.querySelector('#content')
     contentDIV.innerHTML = ''
 
-    
-
     if (array.length > 0) {
         if (document.location.hash) {
             contentDIV.innerHTML = arrayID
         }
-        
+
         array.forEach((program) => {
             contentDIV.appendChild(generateToDOM(program))
         })

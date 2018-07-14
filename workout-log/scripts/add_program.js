@@ -1,5 +1,5 @@
 // The array to hold the different programs
-let programs = createPrograms()
+let programs = createPrograms('program')
 
 // Listen for button press to add program.
 document.querySelector('#add-program-button').addEventListener('click', (event) => {
@@ -12,7 +12,7 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
     if (input.value) {
         programs.push(new Program(input.value))
         input.value = ''
-        saveProgram(programs)
+        saveProgram('program', programs)
         renderPrograms(programs)
     } else {
         alert('You need to enter a workout name')
@@ -21,7 +21,5 @@ document.querySelector('#add-program-button').addEventListener('click', (event) 
 })  
 
 renderPrograms(programs)
-
-//testing(programs)
 
 console.log(currentArray)
