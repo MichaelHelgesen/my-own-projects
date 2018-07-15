@@ -1,39 +1,35 @@
 let programs = createPrograms('program')
 let workoutlog = createPrograms('workoutlog')
 
-// Fill the program selector with option items.
 const fillSelector = (selector, array) => {
-    const selectorID = document.querySelector(selector)
-    const arrayID = array
-    selectorID.innerHTML = ''
-    const optionItem = document.createElement('option')
-
-    arrayID.forEach((program) => {
-        selectorID.appendChild(program)
+    const selectorItem = document.querySelector(selector)
+    selectorItem.innerHTML = ''
+    
+    array.forEach((item) => {
+        const option = document.createElement('option')
+        option.textContent = ''
+        option.textContent = item.name 
+        selectorItem.appendChild(option)
     })
 }
 
 
-
 // Listen for button press to add program.
-document.querySelector('#add-program-button').addEventListener('click', (event) => {
+document.querySelector('#program-selector').addEventListener('change', (event) => {
     
     event.preventDefault()
 
-    const input = document.querySelector('#add-program')
-
-    // Check to see if input has value
-    if (input.value) {
-        workoutlog.push(input.value)
-        input.value = ''
-        saveProgram('workoutlog', workoutlog)
-        //renderPrograms(workoutlog)
-    } else {
-        alert('You need to enter a workout name')
-    } 
+    fillSelector("#session-selector", sessionSelector(programs))
     
-}) 
+})
 
-console.log(workoutlog)
-console.log(programs)
-fillSelector('#program-selector', programs)
+
+const sessionSelector = (array) => {
+    const test = document.querySelector('#program-selector').value 
+    const test2 = array.findIndex(element => element.name.toLowerCase().trim().replace(/\s+/g, '') === test) 
+    return array[test2].sessions
+}
+
+fillSelector("#program-selector", programs)
+
+fillSelector("#session-selector", sessionSelector(programs))
