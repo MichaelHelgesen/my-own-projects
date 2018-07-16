@@ -1,6 +1,7 @@
 let programs = createPrograms('program')
 let workoutlog = createPrograms('workoutlog')
 
+
 const fillSelector = (selector, array) => {
     const selectorItem = document.querySelector(selector)
     selectorItem.innerHTML = ''
@@ -13,16 +14,18 @@ const fillSelector = (selector, array) => {
     })
 }
 
-
 // Listen for button press to add program.
 document.querySelector('#program-selector').addEventListener('change', (event) => {
     
     event.preventDefault()
 
     fillSelector("#session-selector", sessionSelector(programs))
+
+    programSelectorValue = event.target.value
+
+    console.log(programSelectorValue)
     
 })
-
 
 const sessionSelector = (array) => {
     const test = document.querySelector('#program-selector').value 
@@ -33,3 +36,15 @@ const sessionSelector = (array) => {
 fillSelector("#program-selector", programs)
 
 fillSelector("#session-selector", sessionSelector(programs))
+
+let programSelectorValue =  document.querySelector('#program-selector').value
+
+const editSessionLink = document.querySelector('#session-link')
+
+const test = () => {
+    return document.querySelector('#program-selector').value
+}
+
+editSessionLink.href = `/add_session.html#${test()}`
+
+console.log(programSelectorValue)
